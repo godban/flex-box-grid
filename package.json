@@ -1,0 +1,48 @@
+{
+  "author": {
+    "name": "Bogdan Plieshka",
+    "homepage": "http://godban.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/godban/flex-box-grid/issues"
+  },
+  "name": "flex-box-grid",
+  "description": "Responsive, mobile first Flexbox Grid",
+  "devDependencies": {
+    "autoprefixer": "9.4.2",
+    "node-sass": "4.9.0",
+    "postcss-cli": "4.1.1",
+    "stylelint": "10.0.1",
+    "stylelint-config-recommended": "1.0.0"
+  },
+  "homepage": "http://godban.github.io/flex-box-grid",
+  "keywords": [
+    "Grid",
+    "Flex",
+    "Flexbox",
+    "Flex grid",
+    "Mobile First",
+    "Responsive"
+  ],
+  "license": "MIT",
+  "main": "dist/css/index.css",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/godban/flex-box-grid.git"
+  },
+  "scripts": {
+    "build": "npm run dist && npm run docs",
+    "dist": "npm run dist:clean && npm run dist:copy && npm run dist:scss && npm run dist:postcss && npm run dist:zip",
+    "dist:clean": "rm -rf dist",
+    "dist:copy": "mkdir dist && cp -a src/scss dist/scss",
+    "dist:scss": "node-sass src/scss/index.scss dist/css/index.css --output-style=expanded",
+    "dist:postcss": "postcss -u autoprefixer -c postcss.config.js -o dist/css/*.css dist/css/index.css",
+    "dist:zip": "zip -r dist/flexboxgrid.zip dist/scss",
+    "docs": "npm run docs:clean && npm run docs:copy && npm run docs:scss",
+    "docs:clean": "rm -rf docs/styles/flex-box-grid docs/dist",
+    "docs:copy": "cp -a dist/scss docs/styles/flex-box-grid && cp -a dist docs/dist",
+    "docs:scss": "node-sass docs/styles/index.scss docs/styles/index.css --output-style=compressed",
+    "test": "stylelint '**/*.scss' --syntax scss"
+  },
+  "version": "1.0.0"
+}
